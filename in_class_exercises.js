@@ -88,7 +88,7 @@ function ordenarPlatoPersona2(tiempo){
 
 const tiempoPlatoPersona1 = 3;
 const tiempoPlatoPersona2 = 5;
-
+/*
 Promise.all([
     ordenarPlatoPersona1(tiempoPlatoPersona1),
     ordenarPlatoPersona2(tiempoPlatoPersona2),    
@@ -120,6 +120,9 @@ async function prepararPlatos() {
         console.error("Algo salio mal:", error);
     }
 }
+
+prepararPlatos();
+
 /*¿Que nos devuelve una promesa?
 Fetch:
     Cualquier pedido de recursos que no dependa de nosotros

@@ -1,0 +1,130 @@
+/*
+Ejercicio 1: Crear una llamada asincronica simulando
+una espera
+*/
+
+function repararAuto1(tiempo){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Auto reparado en ${tiempo} dias.`);
+        }, tiempo * 1000);
+    });
+}
+
+const tiempoAuto = 2;
+
+repararAuto(tiempoAuto)
+.then((resultadoAuto) => {
+    console.log(resultadoAuto);
+})
+.catch((error) => {
+    console.error("Algo salio mal", error);
+});
+
+//Ejercicio 2: Modificar el ejercicio 1 con async / await
+
+async function repararAutos() {
+    try {
+        const auto = await repararAuto(tiempoAuto);
+        console.log("El auto esta listo.");
+        console.log(auto);
+    }catch (error){
+        console.error("Algo salio mal:", error);
+    }
+}
+
+
+/*Ejemplo 1:
+function esperar(tiempo) {
+return new Promise((resolve) => {
+setTimeout(() => {
+resolve(`Esperado ${tiempo} ms`);
+}, tiempo);
+});
+}
+esperar(2000)
+.then((resultado) => {
+console.log(resultado);
+})
+.catch((error) => {
+console.error('Error:', error);
+});
+*/
+
+------------------------------------------------------------------------------
+Ejercicio 2: Modificar el ejercicio 1 con async / await
+
+//Ejemplo ejercicio 2 resolucion propia:
+
+function esperar(tiempo) {
+return new Promise((resolve) => {
+setTimeout(() => {
+resolve(`Esperado ${tiempo} ms`);
+}, tiempo);
+});
+}
+
+const tiempoDeterminado = 2000;
+
+async function esperarTiempo(){
+    try{
+        const tiempo1 = await esperar(2000);
+        console.log(tiempo1);
+    } catch(error){
+        console.error("Algo salio mal:", error);
+    }
+}
+
+esperarTiempo();
+
+Resolucion PDF
+async function esperar(tiempo) {
+    const resultado = await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Esperado ${tiempo} ms`);
+        }, tiempo);
+    });
+
+    console.log(resultado);
+}
+
+esperar(2000);
+
+//Mi ejemplo
+async function repararAuto(tiempo){
+    const resultado = await new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Auto reparado en ${tiempo} dias.`);
+        }, tiempo * 1000)
+    });
+    console.log(resultado);
+}
+
+repararAuto(2);
+
+Version larga: 
+
+function repararAuto(tiempo){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Auto reparado en ${tiempo} dias.`);
+        }, tiempo * 1000);
+    });
+}
+
+const tiempoAuto = 2;
+
+async function repararAutos() {
+    try {
+        const auto = await repararAuto(tiempoAuto);
+        console.log("El auto esta listo.");
+        console.log(auto);
+    }catch (error){
+        console.error("Algo salio mal:", error);
+    }
+}
+
+repararAutos();
+
+-----------------------------------------------------------------------------------------
+
