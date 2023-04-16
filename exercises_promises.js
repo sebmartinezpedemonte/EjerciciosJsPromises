@@ -16,16 +16,22 @@ const usuarios = [
 async function obtenerUsuario(id) {
     const resultado = await new Promise((resolve) => {
         setTimeout(() => {
-            resolve(usuarios[id -1 ]);
+            const usuario = usuarios.find((u) => u.id === id);
+            resolve(usuario);
+            //resolve(usuarios[id -1 ]);
         },2000);
     });
     return resultado;
 }
-//devuelve un usuario
+
+
+//devuelve  el atributo array publicaciones (devuleve un array de strings)
 async function obtenerPublicaciones(idUsuario) {
     const resultado = await new Promise((resolve) => {
         setTimeout(() => {
-            resolve(usuarios[idUsuario -1 ].publicaciones);
+            const usuario = usuarios.find((u) => u.id === idUsuario);
+            resolve(usuario.publicaciones);
+            //resolve(usuarios[idUsuario -1 ].publicaciones);
         }, 2000);
     });
     return resultado;
@@ -63,7 +69,7 @@ obtenerInfoCompletaUsuario(1);
 
 //_______________________________________Solucion CHATGPT que vi dsp___________________________
 /*
-//devuelve un string
+//devuelve un usuario
 function obtenerUsuario(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
