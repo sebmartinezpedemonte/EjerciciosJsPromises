@@ -1,5 +1,6 @@
-//Ejercicio 3: Datos del usuario
-/*
+//Ejercicio 4: Modificar el ejercicio anterior para hacer las llamadas en simultaneo.
+
+/*Ejercicio 3: Datos del usuario
 Crear una funcion que use otras dos. Todas van a ser asincronicas. Las dos
 funciones hijas tienen que simular el llamado a un servicio usando setTimeout y la
 clase Promise(se puede mezclar con async/await). Crear una funcion padre que use
@@ -11,7 +12,7 @@ const usuarios = [
 ];
 
 
-//devuelve un string
+//devuelve un usuario
 async function obtenerUsuario(id) {
     const resultado = await new Promise((resolve) => {
         setTimeout(() => {
@@ -20,7 +21,7 @@ async function obtenerUsuario(id) {
     });
     return resultado;
 }
-//devuelve un array de strings
+//devuelve un usuario
 async function obtenerPublicaciones(idUsuario) {
     const resultado = await new Promise((resolve) => {
         setTimeout(() => {
@@ -30,20 +31,8 @@ async function obtenerPublicaciones(idUsuario) {
     return resultado;
 }
 
-async function obtenerInfoCompletaUsuario(idUsuario) {
-    try {
-    const usuario = await obtenerUsuario(idUsuario);
-    const publicaciones = await obtenerPublicaciones(idUsuario);
-    console.log(`Nombre de usuario: ${usuario.nombre}`);
-    console.log(`Publicaciones del usuario: ${publicaciones.join(', ')}`);
-    } catch (error) {
-    console.error('Error:', error);
-    }
-    }
-obtenerInfoCompletaUsuario(1);
 
-//_______________Con Promise.all________________________________
-/* 
+
 async function obtenerInfoCompletaUsuario(idUsuario) {
 try {
     const[usuario,publicaciones] = await Promise.all([obtenerUsuario(idUsuario),
@@ -55,11 +44,26 @@ console.error('Error:', error);
 }
 }
 obtenerInfoCompletaUsuario(1);
+
+//__________________________________Sin Promise.all_________________________________________
+/*
+async function obtenerInfoCompletaUsuario(idUsuario) {
+    try {
+    const usuario = await obtenerUsuario(idUsuario);
+    const publicaciones = await obtenerPublicaciones(idUsuario);
+    console.log(`Nombre de usuario: ${usuario.nombre}`);
+    console.log(`Publicaciones del usuario: ${publicaciones.join(', ')}`);
+    } catch (error) {
+    console.error('Error:', error);
+    }
+    }
+obtenerInfoCompletaUsuario(1);
 */
+
 
 //_______________________________________Solucion CHATGPT que vi dsp___________________________
 /*
-
+//devuelve un string
 function obtenerUsuario(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -69,6 +73,7 @@ function obtenerUsuario(id) {
   });
 }
 
+//devuelve un array de strings
 function obtenerPublicaciones(idUsuario) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -97,12 +102,12 @@ obtenerInfoCompletaUsuario(1);
 */
 
 
-//________________________________Mi ejemplo con reparar Vehiculos, Auto, Moto_________________________
-/*
+//________________________________Mi ejemplo con reparar Vehiculos, Auto, Moto con Promise.all_________________________
+
+
 async function repararVehiculos(tiempo){
     try{
-    const auto = await repararAuto(tiempo);
-    const moto = await repararMoto(tiempo);
+        const[auto, moto] = await Promise.all([repararAuto(tiempo), repararMoto(tiempo)]);
     console.log("Vehiculos reparados");
 }catch(error){
     console.error('Error:', error)
@@ -131,5 +136,5 @@ async function repararMoto(tiempo){
     });
     console.log(resultado);
 }
-*/
+
 
